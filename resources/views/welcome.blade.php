@@ -24,6 +24,17 @@
     </div>
 
 
+<!-- trabajo mich  -->
+
+<button class="Boton_editar" type="button">editar</button>
+
+
+
+
+
+
+
+<!-- de aqui para abajo no se mueve  -->
 
     <div class="contenido">
         <form action="#" method="get" class="formulario-resena">

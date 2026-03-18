@@ -4,6 +4,29 @@ body {
     margin: 0; /* Quitamos los márgenes por defecto para que no haya bordes blancos */
 }
 
+/* Botón editar */
+.boton-editar {
+    background-color: #28a745; /* verde */
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Hover (cuando pasas el mouse) */
+.boton-editar:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Click */
+.boton-editar:active {
+    transform: scale(0.98);
+}
+
 .contenido {
     display: flex;
     flex-direction: column;
