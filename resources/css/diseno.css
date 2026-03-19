@@ -505,3 +505,43 @@ textarea {
 .dot3 {
     animation-delay: 0.4s;
 }
+
+/* Estilo para el botón de Miguel */
+.Boton_eliminar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #e63946; /* Un rojo moderno y elegante */
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px; /* Forma circular/ovalada */
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Efectos al pasar el mouse */
+.Boton_eliminar:hover {
+    background-color: #c1121f;
+    transform: scale(1.05); /* Crece un poquito */
+    box-shadow: 0 6px 20px rgba(193, 18, 31, 0.4);
+}
+
+/* Efecto al hacer clic */
+.Boton_eliminar:active {
+    transform: scale(0.95); /* Se hunde un poco al presionar */
+}
+
+/* Animación para el icono del bote de basura */
+.Boton_eliminar svg {
+    transition: transform 0.2s;
+}
+
+.Boton_eliminar:hover svg {
+    transform: rotate(-10deg) scale(1.2); /* El bote se inclina y crece */
+}
