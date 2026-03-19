@@ -12,7 +12,16 @@
 
     </div>
 
+    <form>
+    <input type="text" placeholder="Buscar libros, usuarios..." />
+    <button type="submit">Buscar</button>
+</form>
+<form style="display:flex; gap:10px;">
+    <input type="text" placeholder="Buscar..." style="padding:8px; width:250px;">
+    <button type="submit" style="padding:8px;">🔍</button>
+</form>
     <!-- Agregar cualquier script JS que sea necesario -->
+    
 
 </body>
 </html>
