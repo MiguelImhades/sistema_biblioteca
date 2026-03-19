@@ -1,547 +1,287 @@
+/* --- BASE Y CONTENEDOR --- */
 body {
     background-color: #25343f;
     color: #fff;
-    margin: 0; /* Quitamos los márgenes por defecto para que no haya bordes blancos */
-}
-
-/* Botón editar */
-.boton-editar {
-    background-color: #28a745; /* verde */
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
-
-/* Hover (cuando pasas el mouse) */
-.boton-editar:hover {
-    background-color: #218838;
-    transform: scale(1.05);
-}
-
-/* Click */
-.boton-editar:active {
-    transform: scale(0.98);
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .contenido {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    text-align: center;
-
+    padding: 20px;
 }
 
+/* --- TARJETA BLANCA (ESTILO IMAGEN) --- */
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    width: 100%;
+    max-width: 450px; /* Ajustado para que se vea bien en web */
+    color: #333;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+/* Imagen de cabecera AI */
+.card-image .placeholder-image {
+    width: 100%;
+    height: 180px;
+    background-color: #0d1a35;
+    background-image: linear-gradient(45deg, #0d1a35 25%, #162a56 25%, #162a56 50%, #0d1a35 50%, #0d1a35 75%, #162a56 75%, #162a56 100%);
+    background-size: 30px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ai-logo {
+    font-size: 70px;
+    font-weight: bold;
+    color: #3b82f6;
+    opacity: 0.9;
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* --- CUERPO INTERNO --- */
 .formulario-resena {
+    padding: 25px;
     display: flex;
     flex-direction: column;
+    gap: 15px;
+}
+
+.card-header-internal {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card-title-text {
+    font-size: 1.4rem;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.card-author-text {
+    color: #888;
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
+}
+
+.badge {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.card-description-text {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* --- INPUTS Y TEXTAREA --- */
+textarea {
+    width: 100%;
+    background: #f8f9fa;
+    color: #333;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: inherit;
+    resize: none;
+    box-sizing: border-box;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #ffa723;
+    background: #fff;
+}
+
+/* --- SISTEMA DE RATING (ORIGINAL) --- */
+.rating-container {
+    display: flex;
     align-items: center;
     gap: 15px;
-    margin-top: 10px;
 }
 
-textarea {
-    background: #1b262f;
-    color: #fff;
-    border: 1px solid #ffa723;
-    border-radius: 8px;
-    padding: 10px;
-    font-family: inherit;
-}
-
-.btn-enviar {
-    background-color: #ffa723;
-    color: #1b262f;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-enviar:hover {
-    background-color: #e58e09;
-}
-
-/* diseño de reseñas  */
-
-.rating input {
-    display: none;
+.rating-text {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 600;
 }
 
 .rating {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: center;
 }
+
+.rating input { display: none; }
 
 .rating label {
     cursor: pointer;
-    font-size: 40px;
-    color: #556b7d;
-    margin: 0 5px;
+    font-size: 28px;
+    color: #ddd;
+    margin: 0 2px;
     transition: color 0.2s;
 }
 
-.rating label::before {
-    content: "★";
-}
+.rating label::before { content: "★"; }
 
 .rating input:checked ~ label,
 .rating label:hover,
 .rating label:hover ~ label {
-    color: #ffa723;
+    color: #ffc107;
 }
 
-#pantalla-carga {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh; 
-    background-color: #25343f;
+/* --- FOOTER Y BOTONES --- */
+.card-footer {
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    z-index: 9999;
-    transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease;
-    font-size: 25px;
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
 }
 
-
-#pantalla-carga.oculto {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.book {
-    font-size: 30px !important; 
-    flex-shrink: 0; 
-
-    background-color: hsl(268, 90%, 65%);
-    border-radius: 0.25em;
-    box-shadow:
-        0 0.25em 0.5em hsla(0, 0%, 0%, 0.3),
-        0 0 0 0.25em hsl(278, 100%, 57%) inset;
-    padding: 0.25em;
-    perspective: 37.5em;
-    position: relative;
-    width: 8em;
-    height: 6em;
-    transform: translate3d(0, 0, 0);
-    transform-style: preserve-3d;
-}
-/* apis  */
-.book,
-.book__pg-shadow,
-.book__pg {
-    animation: cover 5s ease-in-out infinite;
-}
-.book {
-    background-color: hsl(268, 90%, 65%);
-    border-radius: 0.25em;
-    box-shadow:
-        0 0.25em 0.5em hsla(0, 0%, 0%, 0.3),
-        0 0 0 0.25em hsl(278, 100%, 57%) inset;
-    padding: 0.25em;
-    perspective: 37.5em;
-    position: relative;
-    width: 8em;
-    height: 6em;
-    transform: translate3d(0, 0, 0);
-    transform-style: preserve-3d;
-}
-.book__pg-shadow,
-.book__pg {
-    position: absolute;
-    left: 0.25em;
-    width: calc(50% - 0.25em);
-}
-.book__pg-shadow {
-    animation-name: shadow;
-    background-image: linear-gradient(
-        -45deg,
-        hsla(0, 0%, 0%, 0) 50%,
-        hsla(0, 0%, 0%, 0.3) 50%
-    );
-    filter: blur(0.25em);
-    top: calc(100% - 0.25em);
-    height: 3.75em;
-    transform: scaleY(0);
-    transform-origin: 100% 0%;
-}
-.book__pg {
-    animation-name: pg1;
-    background-color: hsl(223, 10%, 100%);
-    background-image: linear-gradient(
-        90deg,
-        hsla(223, 10%, 90%, 0) 87.5%,
-        hsl(223, 10%, 90%)
-    );
-    height: calc(100% - 0.5em);
-    transform-origin: 100% 50%;
-}
-.book__pg--2,
-.book__pg--3,
-.book__pg--4 {
-    background-image:
-        repeating-linear-gradient(
-            hsl(223, 10%, 10%) 0 0.125em,
-            hsla(223, 10%, 10%, 0) 0.125em 0.5em
-        ),
-        linear-gradient(90deg, hsla(223, 10%, 90%, 0) 87.5%, hsl(223, 10%, 90%));
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size:
-        2.5em 4.125em,
-        100% 100%;
-}
-.book__pg--2 {
-    animation-name: pg2;
-}
-.book__pg--3 {
-    animation-name: pg3;
-}
-.book__pg--4 {
-    animation-name: pg4;
-}
-.book__pg--5 {
-    animation-name: pg5;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg: hsl(223, 10%, 30%);
-        --fg: hsl(223, 10%, 90%);
-    }
-}
-
-/* Animations */
-@keyframes cover {
-    from,
-    5%,
-    45%,
-    55%,
-    95%,
-    to {
-        animation-timing-function: ease-out;
-        background-color: hsl(278, 84%, 67%);
-    }
-    10%,
-    40%,
-    60%,
-    90% {
-        animation-timing-function: ease-in;
-        background-color: hsl(271, 90%, 45%);
-    }
-}
-@keyframes shadow {
-    from,
-    10.01%,
-    20.01%,
-    30.01%,
-    40.01% {
-        animation-timing-function: ease-in;
-        transform: translate3d(0, 0, 1px) scaleY(0) rotateY(0);
-    }
-    5%,
-    15%,
-    25%,
-    35%,
-    45%,
-    55%,
-    65%,
-    75%,
-    85%,
-    95% {
-        animation-timing-function: ease-out;
-        transform: translate3d(0, 0, 1px) scaleY(0.2) rotateY(90deg);
-    }
-    10%,
-    20%,
-    30%,
-    40%,
-    50%,
-    to {
-        animation-timing-function: ease-out;
-        transform: translate3d(0, 0, 1px) scaleY(0) rotateY(180deg);
-    }
-    50.01%,
-    60.01%,
-    70.01%,
-    80.01%,
-    90.01% {
-        animation-timing-function: ease-in;
-        transform: translate3d(0, 0, 1px) scaleY(0) rotateY(180deg);
-    }
-    60%,
-    70%,
-    80%,
-    90%,
-    to {
-        animation-timing-function: ease-out;
-        transform: translate3d(0, 0, 1px) scaleY(0) rotateY(0);
-    }
-}
-@keyframes pg1 {
-    from,
-    to {
-        animation-timing-function: ease-in-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(0.4deg);
-    }
-    10%,
-    15% {
-        animation-timing-function: ease-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(180deg);
-    }
-    20%,
-    80% {
-        animation-timing-function: ease-in;
-        background-color: hsl(223, 10%, 45%);
-        transform: translate3d(0, 0, 1px) rotateY(180deg);
-    }
-    85%,
-    90% {
-        animation-timing-function: ease-in-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(180deg);
-    }
-}
-@keyframes pg2 {
-    from,
-    to {
-        animation-timing-function: ease-in;
-        background-color: hsl(223, 10%, 45%);
-        transform: translate3d(0, 0, 1px) rotateY(0.3deg);
-    }
-    5%,
-    10% {
-        animation-timing-function: ease-in-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(0.3deg);
-    }
-    20%,
-    25% {
-        animation-timing-function: ease-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(179.9deg);
-    }
-    30%,
-    70% {
-        animation-timing-function: ease-in;
-        background-color: hsl(223, 10%, 45%);
-        transform: translate3d(0, 0, 1px) rotateY(179.9deg);
-    }
-    75%,
-    80% {
-        animation-timing-function: ease-in-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(179.9deg);
-    }
-    90%,
-    95% {
-        animation-timing-function: ease-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(0.3deg);
-    }
-}
-@keyframes pg3 {
-    from,
-    10%,
-    90%,
-    to {
-        animation-timing-function: ease-in;
-        background-color: hsl(223, 10%, 45%);
-        transform: translate3d(0, 0, 1px) rotateY(0.2deg);
-    }
-    15%,
-    20% {
-        animation-timing-function: ease-in-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(0.2deg);
-    }
-    30%,
-    35% {
-        animation-timing-function: ease-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(179.8deg);
-    }
-    40%,
-    60% {
-        animation-timing-function: ease-in;
-        background-color: hsl(223, 10%, 45%);
-        transform: translate3d(0, 0, 1px) rotateY(179.8deg);
-    }
-    65%,
-    70% {
-        animation-timing-function: ease-in-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(179.8deg);
-    }
-    80%,
-    85% {
-        animation-timing-function: ease-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(0.2deg);
-    }
-}
-@keyframes pg4 {
-    from,
-    20%,
-    80%,
-    to {
-        animation-timing-function: ease-in;
-        background-color: hsl(223, 10%, 45%);
-        transform: translate3d(0, 0, 1px) rotateY(0.1deg);
-    }
-    25%,
-    30% {
-        animation-timing-function: ease-in-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(0.1deg);
-    }
-    40%,
-    45% {
-        animation-timing-function: ease-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(179.7deg);
-    }
-    50% {
-        animation-timing-function: ease-in;
-        background-color: hsl(223, 10%, 45%);
-        transform: translate3d(0, 0, 1px) rotateY(179.7deg);
-    }
-    55%,
-    60% {
-        animation-timing-function: ease-in-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(179.7deg);
-    }
-    70%,
-    75% {
-        animation-timing-function: ease-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(0.1deg);
-    }
-}
-@keyframes pg5 {
-    from,
-    30%,
-    70%,
-    to {
-        animation-timing-function: ease-in;
-        background-color: hsl(223, 10%, 45%);
-        transform: translate3d(0, 0, 1px) rotateY(0);
-    }
-    35%,
-    40% {
-        animation-timing-function: ease-in-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(0deg);
-    }
-    50% {
-        animation-timing-function: ease-in-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(179.6deg);
-    }
-    60%,
-    65% {
-        animation-timing-function: ease-out;
-        background-color: hsl(223, 10%, 100%);
-        transform: translate3d(0, 0, 1px) rotateY(0);
-    }
-}
-
-/*==========================animacion para texto de carga========================== */
-@keyframes titilar {
-    0%,
-    100% {
-        opacity: 0;
-    } /* Empieza y termina invisible */
-    50% {
-        opacity: 1;
-    } /* A la mitad es totalmente visible */
-}
-
-/* Estilos para el texto base (puedes ajustar el tamaño aquí si quieres) */
-.texto-cargando {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: normal;
-    letter-spacing: 2px;
-    margin: 0;
-    display: flex;
-    align-items: baseline;
-}
-
-/* Estilos para cada puntito de cargando...*/
-.dot1,
-.dot2,
-.dot3 {
-    animation-name: titilar;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-}
-
-.dot1 {
-    animation-delay: 0s;
-}
-.dot2 {
-    animation-delay: 0.2s;
-}
-.dot3 {
-    animation-delay: 0.4s;
-}
-
-/* Estilo para el botón de Miguel */
-.Boton_eliminar {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background-color: #e63946; /* Un rojo moderno y elegante */
-    color: #ffffff;
+/* Botón Subir/Enviar Principal */
+.boton_subir {
+    background-color: #0d1a35;
+    color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 30px; /* Forma circular/ovalada */
-    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 8px;
     font-weight: bold;
-    text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.boton_subir:hover {
+    background-color: #1e3a8a;
+}
+
+.action-icons {
+    display: flex;
+    gap: 8px;
+}
+
+/* Botón Editar (Tu estilo verde original adaptado) */
+.Boton_editar {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-/* Efectos al pasar el mouse */
+.Boton_editar:hover {
+    background-color: #218838;
+    transform: scale(1.1);
+}
+
+/* Botón Eliminar (Estilo Miguel con Animación) */
+.Boton_eliminar {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.Boton_eliminar svg { transition: transform 0.2s; }
+
 .Boton_eliminar:hover {
     background-color: #c1121f;
-    transform: scale(1.05); /* Crece un poquito */
-    box-shadow: 0 6px 20px rgba(193, 18, 31, 0.4);
-}
-
-/* Efecto al hacer clic */
-.Boton_eliminar:active {
-    transform: scale(0.95); /* Se hunde un poco al presionar */
-}
-
-/* Animación para el icono del bote de basura */
-.Boton_eliminar svg {
-    transition: transform 0.2s;
+    transform: scale(1.1);
 }
 
 .Boton_eliminar:hover svg {
-    transform: rotate(-10deg) scale(1.2); /* El bote se inclina y crece */
+    transform: rotate(-15deg) scale(1.1);
+}
+
+/* --- PANTALLA DE CARGA --- */
+#pantalla-carga.oculto {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+}
+
+/* Contenedor posicionado arriba a la derecha */
+.contenedor-busqueda {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 100;
+}
+
+.formulario-busqueda {
+    display: flex;
+    align-items: center;
+    background: #1b262f; /* Color oscuro como tus otros inputs */
+    border: 1px solid #445;
+    border-radius: 20px; /* Estilo cápsula */
+    padding: 5px 15px;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al hacer clic en el buscador */
+.formulario-busqueda:focus-within {
+    border-color: #ffa723; /* Naranja como tus estrellas */
+    box-shadow: 0 0 10px rgba(255, 167, 35, 0.2);
+}
+
+.formulario-busqueda input {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 8px;
+    width: 220px; /* Tamaño discreto para la esquina */
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.formulario-busqueda button {
+    background: transparent;
+    border: none;
+    color: #ffa723;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Ajuste para móviles: si la pantalla es pequeña, se centra */
+@media (max-width: 600px) {
+    .contenedor-busqueda {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+    }
 }
